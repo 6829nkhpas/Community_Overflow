@@ -1,0 +1,6 @@
+export const bd = "mian-stackflow"
+export const questionCollection ="questions"
+export const answerCollection = "anwsers"
+export const commentCollection ="comments"
+export const voteCollection ="votes"
+export const questionAttachmentBucket = "question-attachment"
