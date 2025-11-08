@@ -1,4 +1,4 @@
-export const bd = "mian-stackflow"
+export const db = "main-stackflow"
 export const questionCollection ="questions"
 export const answerCollection = "anwsers"
 export const commentCollection ="comments"
