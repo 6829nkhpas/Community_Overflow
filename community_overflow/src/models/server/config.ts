@@ -1,13 +1,22 @@
-import {Avatars,Client,Databases,Storage,Users} from "node-appwrite"
+import { Client, Databases, Storage, Users } from "node-appwrite";
 import env from '../../app/env';
-const  client = new Client()
-    .setEndpoint(env.appwrite.endpoint) // Your API Endpoint
-    .setProject(env.appwrite.projectId) // Your project ID
-    .setKey(env.appwrite.apikey); // Your secret API key
+// Appwrite server SDK configuration
+// Uses environment variables from src/app/env.ts (or process.env) to initialize the client.
+const endpoint = env?.appwrite?.endpoint || String(process.env.APPWRITE_ENDPOINT || "");
+const projectId = env?.appwrite?.projectId || String(process.env.APPWRITE_PROJECT_ID || "");
+const apiKey = env?.appwrite?.apikey || String(process.env.APPWRITE_API_KEY || "");
 
-const users = new Users(client);
-const databases = new Databases(client);
-const avatars = new Avatars(client);
-const storage = new Storage(client);
+export const client = new Client();
 
-export { client, users, databases, avatars, storage };
+client
+    .setEndpoint(endpoint) // Appwrite endpoint, e.g. https://HOSTNAME_OR_IP/v1
+    .setProject(projectId) // Project ID
+    .setKey(apiKey) // Secret API key for server-side operations
+    .setSelfSigned(true); // use only in dev with self-signed certs
+
+// Export the services your server code uses. Export `storage` because other modules import it.
+export const storage = new Storage(client);
+export const databases = new Databases(client);
+export const users = new Users(client);
+
+// (exports defined inline above)
