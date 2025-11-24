@@ -1,10 +1,7 @@
-import { NextResponse,NextRequest } from "next/server";
-import getOrCreateDB from "./models/server/dbsetup";
-import getOrCreateStorage from "./models/server/storage.collection";
-
-
-export async function middleware(req: NextRequest) {
-    await Promise.all([getOrCreateDB(), getOrCreateStorage()]);
+import { NextResponse } from "next/server";
+// Middleware runs in the Edge runtime and cannot call Node-only admin SDKs.
+// Keep middleware lightweight — do not create databases or buckets here.
+export async function middleware() {
     return NextResponse.next();
 }
 

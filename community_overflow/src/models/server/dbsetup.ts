@@ -13,7 +13,7 @@ export default async function getOrCreateDB(){
     } catch (error) {
         console.error("Error connecting to database:", error)
         try {
-            await databases.create(db,db);
+            await databases.create(db, db);
             console.log("Database Created");
             await Promise.all([
                 createQuestionCollection(),
@@ -28,5 +28,5 @@ export default async function getOrCreateDB(){
             console.error("Error creating database or collections:",error);
         }
     }
-    return databases
+    return databases;
 }
