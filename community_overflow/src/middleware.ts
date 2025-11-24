@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import 'dotenv/config';
 // Middleware runs in the Edge runtime and cannot call Node-only admin SDKs.
 // Keep middleware lightweight — do not create databases or buckets here.
 export async function middleware() {
